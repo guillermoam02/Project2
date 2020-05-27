@@ -1,0 +1,40 @@
+.bar {
+  fill: rgb(0, 179, 255);
+}
+
+.bar:hover {
+  fill: rgb(243, 163, 247);
+}
+
+.line {
+  fill: none;
+  stroke-width: 3px;
+}
+
+.won {
+  stroke: rgb(0, 160, 0);
+}
+
+.drawn {
+  stroke: rgb(184, 184, 184);
+}
+
+.lost {
+  stroke: rgb(140, 0, 0);
+}
+
+.axis {
+  color: rgb(0, 1, 40);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.title_text {
+  fill: rgb(0, 179, 255);;
+}
+
+#intro_text{
+  font-family: sans-serif;
+  font-size: 15px;
+  text-align: justify;
+  color: rgb(0, 0, 65);
+}

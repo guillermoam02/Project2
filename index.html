@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>EPL Data Visualization</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<div>
+				<h1 id="title_text">English Premier League Stats (1992/93 - 2019/20)</h1>
+			</div>
+  		</div>
+		<div class="container" id="intro_text">
+			<p>The Premier League, often referred to as the English Premier League or the EPL outside England, is the top level of the English football league system. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League (EFL). Seasons run from August to May with each team playing 38 matches (playing all 19 other teams both home and away).Most games are played on Saturday and Sunday afternoons.</p>
+			<p>The competition was founded as the FA Premier League on 20 February 1992 following the decision of clubs in the Football League First Division to break away from the Football League, founded in 1888, and take advantage of a lucrative television rights deal. The deal was worth around £1 billion a year domestically as of 2013–14, with Sky and BT Group securing the domestic rights to broadcast 116 and 38 games respectively. The league is a corporation in which the member clubs act as shareholders, and generates €2.2 billion per year in domestic and international television rights. Clubs were apportioned central payment revenues of £2.4 billion in 2016–17, with a further £343 million in solidarity payments to English Football League (EFL) clubs.</p>
+			<p>The Premier League is the most-watched sports league in the world, broadcast in 212 territories to 643 million homes and a potential TV audience of 4.7 billion people. For the 2018–19 season average Premier League match attendance was at 38,181, second to the Bundesliga's 43,500, while aggregated attendance across all matches is the highest of any league at 14,508,981. Most stadium occupancies are near capacity. The Premier League ranks second in the UEFA coefficients of leagues based on performances in European competitions over the past five seasons as of 2019, only behind Spain's La Liga.</p>
+			<p>Forty-nine clubs have competed since the inception of the Premier League in 1992: forty-seven English and two Welsh clubs. Six of them have won the title: Manchester United (13), Chelsea (5), Manchester City (4), Arsenal (3), Blackburn Rovers (1), and Leicester City (1). The record of most points in a Premier League season is 100, set by Manchester City in 2017–18.</p>
+			<br>
+			<p> This is a dynamic chart that will show the obteained points per team as the won, lost and draw matches of the chosen season; choose a season to modify it!</p>
+		</div>
+		<div class="container" id="intro_text">
+			<hr/>
+			<h4> You are looking season 
+				<select onchange="val()" id="selDataset" >
+					<option value="df92">1992-93</option>
+					<option value="df93">1993-94</option>
+					<option value="df94">1994-95</option>
+					<option value="df95">1995-96</option>
+					<option value="df96">1996-97</option>
+					<option value="df97">1997-98</option>
+					<option value="df98">1998-99</option>
+					<option value="df99">1999-00</option>
+					<option value="df00">2000-01</option>
+					<option value="df01">2001-02</option>
+					<option value="df02">2002-03</option>
+					<option value="df03">2003-04</option>
+					<option value="df04">2004-05</option>
+					<option value="df05">2005-06</option>
+					<option value="df06">2006-07</option>
+					<option value="df07">2007-08</option>
+					<option value="df08">2008-09</option>
+					<option value="df09">2009-10</option>
+					<option value="df10">2010-11</option>
+					<option value="df11">2011-12</option>
+					<option value="df12">2012-13</option>
+					<option value="df13">2013-14</option>
+					<option value="df14">2014-15</option>
+					<option value="df15">2015-16</option>
+					<option value="df16">2016-17</option>
+					<option value="df17">2017-18</option>
+					<option value="df18">2018-19</option>
+					<option value="df19">2019-20</option>
+				</select> stats! </h4>
+		</div>
+		<div class="chart">
+		</div>
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+		<hr/>
+	</body>
+</html>
