@@ -1,6 +1,6 @@
 import warnings
 warnings.filterwarnings('ignore')
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, inspect, func
 from sqlalchemy.ext.automap import automap_base
@@ -12,43 +12,63 @@ import requests
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgres:2311@127.0.0.1:63159/EPL9219"
-engine = create_engine(f'postgresql://{app.config["SQLALCHEMY_DATABASE_URI"]}', echo=False)
+db = SQLAlchemy()
 
-inspector = inspect(engine)
-inspector.get_table_names()
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:2311@127.0.0.1:5432/EPL9219"
+#engine = create_engine(f'postgresql://{app.config["SQLALCHEMY_DATABASE_URI"]}', echo=False)
 
-Base = automap_base()
-Base.prepare(engine, reflect=True)
-alls = Base.classes.alls
+db.init_app(app)
 
+class Alls(db.Model):
+    __tablename__ = "alls"
+    Team = db.Column(db.String(50), primary_key = True)
+    GP = db.Column(db.Integer)
+    W = db.Column(db.Integer) 
+    D = db.Column(db.Integer)
+    GF = db.Column(db.Integer)
+    GA = db.Column(db.Integer)
+    L = db.Column(db.Integer)
+    Dif = db.Column(db.Integer)
+    P = db.Column(db.Integer)
+    Season = db.Column(db.String(10))
+    Standing = db.Column(db.Integer)
 
-@app.route('/Season/<season>')
-def getseason(season):
-    session = Session(engine)
-    results = session.query(alls.Team, alls.GP, alls.W, alls.L, alls.D, alls.GF, alls.GA, alls.Dif, alls.P, alls.Season, alls.Standing)\
-        .filter(alls.Season == season)\
-        .order_by(alls.Standing.desc())\
+##inspector = inspect(engine)
+##inspector.get_table_names()
+
+##Base = automap_base()
+##Base.prepare(engine, reflect=True)
+##alls = Base.classes.alls
+
+@app.route("/")
+def home():
+    return render_template("index.html", file="1992-93")
+
+@app.route('/<snumber>')
+def getseason(snumber):
+    results = Alls.query\
+        .filter(Alls.Season == snumber)\
+        .order_by(Alls.Standing)\
         .all()
     
-    session.close()
+    print(results)
 
     alls_info = []
-    for Team, GP, W, L, D, GF, GA, Dif, P, Season, Standing in results:
+    for r in results:
         alls_dict = {}
-        alls_dict["Team"] = Team
-        alls_dict["GP"] = GP
-        alls_dict["W"] = W 
-        alls_dict["D"] = D
-        alls_dict["GF"] = GF
-        alls_dict["GA"] = GA
-        alls_dict["L"] = L
-        alls_dict["Dif"] = Dif
-        alls_dict["P"] = P
-        alls_dict["Season"] = Season
-        alls_dict["Standing"] = Standing
+        alls_dict["Team"] = r.Team
+        alls_dict["GP"] = r.GP
+        alls_dict["W"] = r.W 
+        alls_dict["D"] = r.D
+        alls_dict["GF"] = r.GF
+        alls_dict["GA"] = r.GA
+        alls_dict["L"] = r.L
+        alls_dict["Dif"] = r.Dif
+        alls_dict["P"] = r.P
+        alls_dict["Season"] = r.Season
+        alls_dict["Standing"] = r.Standing
         alls_info.append(alls_dict)
-
+    
     return jsonify(alls_info)
 
 if __name__ == '__main__':

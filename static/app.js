@@ -28,7 +28,7 @@ function val() {
 
 function loaddata(file) {
 
-  d3.csv(file+".csv").then(function(EPLdata) {
+  d3.json(`${file}`).then(function(EPLdata) {
     console.log(EPLdata);
     console.log([EPLdata]);
   
@@ -58,7 +58,7 @@ function loaddata(file) {
     drawline(EPLdata);
   })}
 
-  loaddata("df92");
+  loaddata("1992-93");
 
   function drawline(e) {
     // Create scaling functions
