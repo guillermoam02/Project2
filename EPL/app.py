@@ -10,12 +10,11 @@ import pandas as pd
 
 app = Flask(__name__)
 
-db = SQLAlchemy(app)
-
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 #engine = create_engine(f'postgresql://{app.config["SQLALCHEMY_DATABASE_URI"]}', echo=False)
 
-db.init_app(app)
+db = SQLAlchemy(app)
+#db.init_app(app)
 
 class Alls(db.Model):
     __tablename__ = "alls"
