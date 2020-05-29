@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 db = SQLAlchemy(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:2311@127.0.0.1:5432/EPL9219"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 #engine = create_engine(f'postgresql://{app.config["SQLALCHEMY_DATABASE_URI"]}', echo=False)
 
 db.init_app(app)
