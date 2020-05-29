@@ -1,0 +1,1 @@
+web: gunicorn EPL.app:app

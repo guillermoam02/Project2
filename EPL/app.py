@@ -6,13 +6,11 @@ from sqlalchemy import create_engine, inspect, func
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 import psycopg2
-from bs4 import BeautifulSoup
 import pandas as pd
-import requests
 
 app = Flask(__name__)
 
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:2311@127.0.0.1:5432/EPL9219"
 #engine = create_engine(f'postgresql://{app.config["SQLALCHEMY_DATABASE_URI"]}', echo=False)
@@ -72,4 +70,4 @@ def getseason(snumber):
     return jsonify(alls_info)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
